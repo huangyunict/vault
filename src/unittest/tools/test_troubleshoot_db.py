@@ -3,7 +3,7 @@ from unittest.mock import patch
 from tempfile import NamedTemporaryFile
 
 import sqlcipher3
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, text
 from sqlalchemy.orm import Session
 
 from ..base import BaseTest
@@ -75,7 +75,7 @@ class Test(BaseTest):
         engine = create_engine(
             'sqlite+pysqlcipher://:abcd@//' + f.name, module=sqlcipher3)
         connection = engine.connect()
-        connection.execute('CREATE TABLE foo (a int)')
+        connection.execute(text('CREATE TABLE foo (a int)'))
 
         global_scope['db_file'] = f.name
 

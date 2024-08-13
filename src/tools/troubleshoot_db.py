@@ -7,7 +7,7 @@ from tempfile import NamedTemporaryFile
 import uuid
 
 import sqlcipher3
-from sqlalchemy import exc, create_engine
+from sqlalchemy import exc, create_engine, text
 
 from ..models.base import get_session, drop_sessions, get_db_key
 from ..views.menu import get_input
@@ -48,7 +48,7 @@ def get_pragma_key():
 def query_vault_db():
     """ Attempt a query against the database """
     try:
-        get_session(True).execute('SELECT * FROM sqlite_master')
+        get_session(True).execute(text('SELECT * FROM sqlite_master'))
         return True
     except exc.DatabaseError as e:
         # print('Database Error: %s' % e)
@@ -75,9 +75,9 @@ def attempt_dummy_encrypted_db(db_path):
         module=sqlcipher3)
     # engine = create_engine('sqlite:///' + db_path)
     connection = engine.connect()
-    connection.execute('CREATE TABLE foo (a int)')
-    connection.execute('INSERT INTO foo (a) VALUES (123)')
-    result_proxy = connection.execute('SELECT * FROM foo')
+    connection.execute(text('CREATE TABLE foo (a int)'))
+    connection.execute(text('INSERT INTO foo (a) VALUES (123)'))
+    result_proxy = connection.execute(text('SELECT * FROM foo'))
     return True if result_proxy.fetchall() == [(123,)] else False
 
 
@@ -87,7 +87,7 @@ def verify_if_dummy_db_is_encrypted(db_path):
     engine = create_engine('sqlite:///' + db_path)
     connection = engine.connect()
     try:
-        connection.execute('SELECT * FROM sqlite_master')
+        connection.execute(text('SELECT * FROM sqlite_master'))
 
         # If query is successful, then the database is not encrypted
         return False
