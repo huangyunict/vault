@@ -5,7 +5,7 @@ import os
 import uuid
 
 from .base import BaseTest
-from .. import vault
+from .. import vault_cmd as vault
 from ..modules import misc
 from ..modules.carry import global_scope
 from ..lib.Config import Config

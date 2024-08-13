@@ -17,7 +17,7 @@ from ..lib.Encryption import Encryption
     `import_()` or `export()` and create an associated method
     called `import_from_[some_format]()` or `export_to[some_format]()`.
 
-    The format name must also be added to `src/vault.py` in argparse choices.
+    The format name must also be added to `src/vault_cmd.py` in argparse choices.
 
     If you create a format that can be useful to others, please fork the project
     first and submit a merge request!

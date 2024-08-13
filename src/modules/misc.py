@@ -48,7 +48,7 @@ def create_directory_if_missing(dir_):
         print()
         print('We were unable to create the folder `%s` to store the vault and configuration file.' % (
             dir_))
-        print('Please check the permissions or run `./vault.py --help` to find out how to specify an alternative path for both files.')
+        print('Please check the permissions or run `./vault_cmd.py --help` to find out how to specify an alternative path for both files.')
         print()
         sys.exit()
 

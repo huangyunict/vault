@@ -14,7 +14,7 @@ from ..views.menu import get_input
 from ..modules.carry import global_scope
 from ..lib.Encryption import Encryption
 from ..lib.Config import Config
-from ..vault import get_config_path, get_vault_path
+from ..vault_cmd import get_config_path, get_vault_path
 
 
 def load_config():
