@@ -1,4 +1,4 @@
-from . import vault
+from . import vault_cmd
 
 if __name__ == '__main__':
-    vault.main()
+    vault_cmd.main()
